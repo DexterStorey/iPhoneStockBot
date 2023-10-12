@@ -10,13 +10,17 @@ h1 {
 	@apply font-cal-sans text-black dark:text-white;
 }
 
+p {
+	@apply text-black dark:text-white;
+}
+
 input,
 select {
 	@apply border-black bg-white text-black dark:border-white dark:bg-black dark:text-white;
 }
 
 button {
-	@apply bg-black text-white dark:bg-white dark:text-black;
+	@apply bg-black text-white dark:bg-white dark:text-black !important;
 }
 
 a {
