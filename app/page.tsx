@@ -1,63 +1,9 @@
 import {Metadata} from 'next'
-import {experimental_useFormStatus as useFormStatus} from 'react-dom'
 import {DEFAULT_META} from '../constants/metadata'
+import Form from './form'
 
 export const metadata: Metadata = {
 	...DEFAULT_META
-}
-
-async function subscribe(formData: FormData) {
-	'use server'
-
-	const phoneNumber = formData.get('phone-number')
-	const model = formData.get('model')
-	const zip = formData.get('zip')
-	// ...
-}
-
-function Form() {
-	'use client'
-
-	const {pending} = useFormStatus()
-
-	return (
-		<>
-			{!pending ? (
-				<form
-					action={subscribe}
-					className='flex flex-col gap-5 p-5'>
-					<div className='flex flex-col gap-5 md:flex-row'>
-						<input
-							className='rounded-md border p-2'
-							name='phone-number'
-							placeholder='Phone Number'
-							type='tel'
-						/>
-						<input
-							className='rounded-md border p-2'
-							name='zip'
-							placeholder='Zip Code'
-							type='zip'
-						/>
-						{/* minimalist styled select with tw */}
-						<select
-							className='appearance-none rounded-md border p-2'
-							name='model'>
-							<option value={'iphone-15-pro-max_black_128gb'}>
-								iPhone 15 Pro Max Black 128 GB
-							</option>
-							<option value={'iphone-15-pro-max_black_128gb'}>
-								iPhone 15 Pro Max Black 256 GB
-							</option>
-						</select>
-					</div>
-					<button className='rounded-md p-2'>Submit</button>
-				</form>
-			) : (
-				<p className='text-center'>Sending...</p>
-			)}
-		</>
-	)
 }
 
 export default async function Home() {
@@ -76,40 +22,4 @@ export default async function Home() {
 			</div>
 		</div>
 	)
-}
-
-async function subscribe(formData: FormData) {
-	'use server'
-
-	const phoneNumber = formData.get('phone-number')
-	// ...
-}
-
-function Form() {
-	'use client'
-
-	const {pending} = useFormStatus()
-
-	return (
-		<>
-			{!pending ? (
-				<form action={subscribe}>
-					<input
-						name='phone-number'
-						type='tel'
-					/>
-					<input
-						type='submit'
-						value='Submit'
-					/>
-				</form>
-			) : (
-				<p>Sending...</p>
-			)}
-		</>
-	)
-}
-
-export default async function Page() {
-	return <Form />
 }
